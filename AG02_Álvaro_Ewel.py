@@ -24,6 +24,7 @@ df = df[['island', 'sex', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length
 train, test = train_test_split(df, test_size=0.2, random_state=42)
 
 # 6 - Escolha do Decision tree
+
 # 7 - Treinar e Classificar o modelo
 # Separar features e labels
 X_train = train.drop('species', axis=1)
@@ -42,3 +43,29 @@ predictions = classifier.predict(X_test)
 
 # Exibir as primeiras previsões
 predictions[:5]
+
+# 8 - Exibir métricas de avaliação
+print("Métricas de Avaliação:\n")
+print(classification_report(y_test, predictions))
+
+# 9 - Inserção de dados
+def classify_penguin():
+    print("Entre com as caracteristicas para o pinguim:")
+    island = int(input("De qual ilha ele é? (0 para Biscoe, 1 para Dream, 2 para Torgersen): "))
+    sex = int(input("Qual o sexo do pinguim? (0 para femea, 1 para macho): "))
+    culmen_length_mm = float(input("Qual o comprimeinto do cúlmen? (em mm): "))
+    culmen_depth_mm = float(input("Qual é a profundidade do cúlmen? (em mm): "))
+    flipper_length_mm = float(input("Qual é o comprimento da nadadeira? (em mm): "))
+    body_mass_g = float(input("E qual é a massa corporal (em g) do pinguim? "))
+    
+    input_data = pd.DataFrame([[island, sex, culmen_length_mm, culmen_depth_mm, flipper_length_mm, body_mass_g]],
+                              columns=['island', 'sex', 'culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'])
+    
+    prediction = classifier.predict(input_data)
+    
+    species_mapping = {0: 'Adelie', 1: 'Chinstrap', 2: 'Gentoo'}
+    predicted_species = species_mapping[prediction[0]]
+    
+    print(f"A espécie do pinguim é: {predicted_species}")
+
+classify_penguin()
