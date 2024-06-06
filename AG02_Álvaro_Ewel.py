@@ -52,7 +52,7 @@ print(classification_report(y_test, predictions))
 def classify_penguin():
     print("Entre com as caracteristicas para o pinguim:")
     island = int(input("De qual ilha ele é? (0 para Biscoe, 1 para Dream, 2 para Torgersen): "))
-    sex = int(input("Qual o sexo do pinguim? (0 para femea, 1 para macho): "))
+    sex = int(input("Qual o sexo do pinguim? (0 para female, 1 para male): "))
     culmen_length_mm = float(input("Qual o comprimeinto do cúlmen? (em mm): "))
     culmen_depth_mm = float(input("Qual é a profundidade do cúlmen? (em mm): "))
     flipper_length_mm = float(input("Qual é o comprimento da nadadeira? (em mm): "))
